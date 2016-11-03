@@ -23,7 +23,7 @@ class ViewController: UITableViewController, PickerFieldsDataHelperDelegate {
 
 ```
 
-### Adding Data
+### Initializing
 
 ```swift
 
@@ -37,6 +37,36 @@ class ViewController: UITableViewController, PickerFieldsDataHelperDelegate {
 
 ```
 
+### Adding Data
+
+You can add objects with representing titles to each field at any moment. Picker data are refreshed automatically.
+
+```swift
+
+    func loadAccountTypeOptions() {
+        pickerFieldsDataHelper.addTitleAndObjectInDataHelper(accountTypeTextField, title: "Normal User", object: 0)
+        pickerFieldsDataHelper.addTitleAndObjectInDataHelper(accountTypeTextField, title: "Admin", object: 1)
+    }
+    
+    func loadProfileVisibilityOptions() {
+        pickerFieldsDataHelper.addTitleAndObjectInDataHelper(profileVisibilityTextField, title: "Private", object: "PRI")
+        pickerFieldsDataHelper.addTitleAndObjectInDataHelper(profileVisibilityTextField, title: "Public", object: "PUB")
+    }
+
+```
+
+### Getting Data
+
+Use 'selectedObjectForTextField' method to get the current object for the selected option.
+
+It can be nil if there is an non-value option selected like "Select an option".
+
+```swift
+
+    let object = pickerFieldsDataHelper.selectedObjectForTextField(accountTypeTextField)
+
+```
+
 ### Customization
 
 ```swift
@@ -46,7 +76,7 @@ class ViewController: UITableViewController, PickerFieldsDataHelperDelegate {
         //Done Button Title
         pickerFieldsDataHelper.doneButtonTitle = "Choose"
 
-        //No-value Option and it's title
+        //Non-value Option and it's title
         pickerFieldsDataHelper.useDefaultFirstItem = true
         pickerFieldsDataHelper.defaultFirstItemTitle = "Select an option"
         pickerFieldsDataHelper.initWithDefaultFirstItemSelected = false
