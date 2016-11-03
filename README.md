@@ -63,7 +63,11 @@ It can be nil if there is an non-value option selected like "Select an option".
 
 ```swift
 
-    let object = pickerFieldsDataHelper.selectedObjectForTextField(accountTypeTextField)
+    if let object = pickerFieldsDataHelper.selectedObjectForTextField(accountTypeTextField) {
+    	//Use object
+	} else {
+		//No valid option selected
+	}
 
 ```
 
