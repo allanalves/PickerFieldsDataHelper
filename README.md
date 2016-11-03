@@ -6,6 +6,8 @@ Swift Protocol to create Picker Views and Date Pickers to work with Text Fields'
 
 ## Usage
 
+Just add the file 'PickerFieldsDataHelper.swift' to your project.
+
 ### Delegation
 
 ```swift
