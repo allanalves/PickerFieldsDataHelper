@@ -23,7 +23,6 @@ class ViewController: UITableViewController, PickerFieldsDataHelperDelegate {
         
         pickerFieldsDataHelper.doneButtonTitle = "Choose"
         pickerFieldsDataHelper.defaultFirstItemTitle = "Select an option"
-        pickerFieldsDataHelper.showPlaceholderAsTitle = true
         
         pickerFieldsDataHelper.useDefaultFirstItem = true
         pickerFieldsDataHelper.initWithDefaultFirstItemSelected = false
@@ -49,6 +48,12 @@ class ViewController: UITableViewController, PickerFieldsDataHelperDelegate {
     func loadProfileVisibilityOptions() {
         pickerFieldsDataHelper.addTitleAndObjectInDataHelper(profileVisibilityTextField, title: "Private", object: "PRI")
         pickerFieldsDataHelper.addTitleAndObjectInDataHelper(profileVisibilityTextField, title: "Public", object: "PUB")
+    }
+    
+    func pickerFieldsDataHelper(dataHelper: PickerDataHelper, didSelectObject selectedObject: AnyObject?, withTitle title: String?) {
+        if let title = title, let object = selectedObject {
+            print("Selected '\(title)' with object: \(object)")
+        }
     }
     
     //MARK: - Actions -

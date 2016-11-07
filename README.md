@@ -86,9 +86,6 @@ It can be nil if there is an non-value option selected like "Select an option".
         pickerFieldsDataHelper.useDefaultFirstItem = true
         pickerFieldsDataHelper.defaultFirstItemTitle = "Select an option"
         pickerFieldsDataHelper.initWithDefaultFirstItemSelected = false //Start fields with "Select an option" text
-
-        //Show Text Fields' placeholder as Input View title
-        pickerFieldsDataHelper.showPlaceholderAsTitle = true
         
         //Start with today's date, for date picker fields
         pickerFieldsDataHelper.initWithTodayDate = true
@@ -107,6 +104,17 @@ When calling 'clearAllFields()', all fields turn to default state.
 
 ```
 
+### Optional Methods
+
+#### Get title and object when selecting an item.
+
+```swift
+        
+    func pickerFieldsDataHelper(dataHelper: PickerDataHelper, didSelectObject selectedObject: AnyObject?, withTitle title: String?) {
+        //Use 'title' or 'selectObject'.
+    }
+
+```
 
 
 

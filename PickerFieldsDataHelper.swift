@@ -8,11 +8,11 @@
 
 import UIKit
 
-protocol PickerFieldsDataHelperDelegate: class {
-    //
+@objc protocol PickerFieldsDataHelperDelegate: class {
+    @objc optional func pickerFieldsDataHelper(dataHelper: PickerDataHelper, didSelectObject selectedObject: AnyObject?, withTitle title: String?)
 }
 
-class PickerDataHelper {
+@objc class PickerDataHelper: NSObject {
     var pickerView: UIPickerView?
     var datePicker: UIDatePicker?
     var textField: UITextField?
@@ -39,7 +39,7 @@ class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, UIPicker
     //Show first item with nil object
     var useDefaultFirstItem = true
     var initWithDefaultFirstItemSelected = true //if useDefaultFirstItem is true
-    var defaultFirstItemTitle = "Todos" //Use if useDefaultFirstItem is true
+    var defaultFirstItemTitle = "Select..." //Use if useDefaultFirstItem is true
     
     //Date Type
     var dateFormat = "dd/MM/yyyy"
@@ -200,20 +200,20 @@ class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, UIPicker
     
     //Add input accessory view with done button
     func addToolBarPickerViews(title : String, textField : UITextField) {
-        let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: 100.0, height: 44.0))
-        let navigationItem = UINavigationItem()
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.Default
+        toolBar.translucent = true
+        toolBar.tintColor = Color.black().colorWithAlphaComponent(0.1)
+        toolBar.sizeToFit()
         
         let closeButton = UIBarButtonItem(title: title, style: .Done, target: self, action: #selector(self.closePicker))
-        navigationItem.rightBarButtonItem = closeButton
+        closeButton.tintColor = Color.blueCustodiaButtons()
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
         
-        if showPlaceholderAsTitle {
-            if let placeholder = textField.placeholder {
-                navigationItem.title = placeholder
-            }
-        }
+        toolBar.setItems([spaceButton, closeButton], animated: false)
+        toolBar.userInteractionEnabled = true
         
-        navigationBar.items = [navigationItem]
-        textField.inputAccessoryView = navigationBar
+        textField.inputAccessoryView = toolBar
     }
     
     //Set selected date as selected object, and textfield title
@@ -257,6 +257,10 @@ class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, UIPicker
                                         dataHelper.selectedObject = dataHelper.objects[row]
                                     }
                                 }
+                                //When user taps the done button to select an option
+                                self.delegate?.pickerFieldsDataHelper?(dataHelper,
+                                                                       didSelectObject: dataHelper.selectedObject,
+                                                                       withTitle: title)
                             }
                         }
                     }
@@ -266,9 +270,6 @@ class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, UIPicker
     }
     
 }
-
-
-
 
 
 
