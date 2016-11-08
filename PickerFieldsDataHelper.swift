@@ -63,7 +63,14 @@ class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, UIPicker
         if isDateType {
             let datePicker = UIDatePicker()
             datePicker.datePickerMode = .Date
+            //Select date automatically if it doesn't need confirmation button
+            if !needsConfirmationButton {
+                datePicker.addTarget(self,
+                                     action: #selector(self.didSelectDate(_:)),
+                                     forControlEvents: .ValueChanged)
+            }
             dataHelper.datePicker = datePicker
+            
             textField.inputView = datePicker
             
             if initWithTodayDate {
@@ -130,11 +137,27 @@ class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, UIPicker
     func textFieldDidBeginEditing(textField: UITextField) {
         if !needsConfirmationButton {
             if let dataHelper = dataHelper(textField) { //Get DataHelper
-                if let pickerView = dataHelper.pickerView { //Get PickerView
-                    let row = pickerView.selectedRowInComponent(0)
-                    selectObjectOfRow(row, dataHelper: dataHelper)
-                    let title = dataHelper.titles[row]
-                    textField.text = title
+                if !dataHelper.isDateType {
+                    if let pickerView = dataHelper.pickerView { //Get PickerView
+                        let row = pickerView.selectedRowInComponent(0)
+                        selectObjectOfRow(row, dataHelper: dataHelper)
+                        let title = dataHelper.titles[row]
+                        textField.text = title
+                    }
+                }
+            }
+        }
+    }
+    
+    //MARK: - Date Picker -
+    
+    @objc private func didSelectDate(datePicker: UIDatePicker) {
+        for dataHelper in dataHelpers {
+            if let dataHelperDatePicker = dataHelper.datePicker { //Find DH DatePicker
+                if dataHelperDatePicker == datePicker {
+                    if let textField = dataHelper.textField {
+                        selectDate(dataHelperDatePicker.date, textField: textField)
+                    }
                 }
             }
         }
