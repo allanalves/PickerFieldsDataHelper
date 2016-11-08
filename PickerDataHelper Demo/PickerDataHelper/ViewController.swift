@@ -23,6 +23,7 @@ class ViewController: UITableViewController, PickerFieldsDataHelperDelegate {
         
         pickerFieldsDataHelper.doneButtonTitle = "Choose"
         pickerFieldsDataHelper.defaultFirstItemTitle = "Select an option"
+        pickerFieldsDataHelper.needsConfirmationButton = true
         
         pickerFieldsDataHelper.useDefaultFirstItem = true
         pickerFieldsDataHelper.initWithDefaultFirstItemSelected = false
