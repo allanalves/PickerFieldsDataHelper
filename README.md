@@ -75,21 +75,25 @@ It can be nil if there is an non-value option selected like "Select an option".
 
 ### Customization
 
+#### Select Confirmation Button
+
 ```swift
-        
-		//... (viewDidLoad method)
-
-        //Done Button Title
         pickerFieldsDataHelper.doneButtonTitle = "Choose"
+        pickerFieldsDataHelper.needsConfirmationButton = false //Selects without tapping the button
+```
 
-        //Non-value Option and it's title
+#### Non-value Default Option
+
+```swift
         pickerFieldsDataHelper.useDefaultFirstItem = true
         pickerFieldsDataHelper.defaultFirstItemTitle = "Select an option"
         pickerFieldsDataHelper.initWithDefaultFirstItemSelected = false //Start fields with "Select an option" text
-        
-        //Start with today's date, for date picker fields
-        pickerFieldsDataHelper.initWithTodayDate = true
+```
 
+#### Date Type: Start with today's date
+
+```swift
+		pickerFieldsDataHelper.initWithTodayDate = true
 ```
 
 ### Clearing Fields
