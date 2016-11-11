@@ -254,6 +254,7 @@ class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, UIPicker
                         if let datePicker = dataHelper.datePicker {
                             datePicker.date = NSDate()
                             refreshDate(dataHelper)
+                        }
                     } else {
                         textField.text = ""
                     }
