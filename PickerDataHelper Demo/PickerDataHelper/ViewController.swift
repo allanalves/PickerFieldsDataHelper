@@ -48,7 +48,7 @@ class ViewController: UITableViewController, PickerFieldsDataHelperDelegate {
     
     func loadProfileVisibilityOptions() {
         pickerFieldsDataHelper.addTitleAndObjectInDataHelper(profileVisibilityTextField, title: "Private", object: "PRI")
-        pickerFieldsDataHelper.addTitleAndObjectInDataHelper(profileVisibilityTextField, title: "Public", object: "PUB")
+        pickerFieldsDataHelper.addTitleAndObjectInDataHelper(profileVisibilityTextField, title: "Public", object: "PUB", isDefault: true)
     }
     
     func pickerFieldsDataHelper(dataHelper: PickerDataHelper, didSelectObject selectedObject: AnyObject?, withTitle title: String?) {

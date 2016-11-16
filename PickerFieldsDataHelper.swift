@@ -20,6 +20,7 @@ import UIKit
     var titles = [String]()
     var objects = [AnyObject]()
     var selectedObject: AnyObject?
+    var defaultOption: (String,AnyObject)?
     
     init(textField: UITextField, isDateType: Bool) {
         let pickerView = UIPickerView()
@@ -122,6 +123,16 @@ class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, UIPicker
         }
     }
     
+    func addTitleAndObjectInDataHelper(textField: UITextField, title: String, object: AnyObject, isDefault: Bool) {
+        addTitleAndObjectInDataHelper(textField, title: title, object: object)
+        if isDefault {
+            if let dataHelper = dataHelper(textField) {
+                dataHelper.defaultOption = (title,object)
+                selectDefaultOption(dataHelper)
+            }
+        }
+    }
+    
     //Return selected object for given textfield
     func selectedObjectForTextField(textField: UITextField) -> AnyObject? {
         if let dataHelper = dataHelper(textField) {
@@ -130,6 +141,16 @@ class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, UIPicker
             }
         }
         return nil
+    }
+    
+    //Select option on textField and selectedObject property
+    private func selectDefaultOption(dataHelper: PickerDataHelper) {
+        if let defaultOption = dataHelper.defaultOption {
+            if let textField = dataHelper.textField {
+                textField.text = defaultOption.0
+            }
+            dataHelper.selectedObject = defaultOption.1
+        }
     }
     
     //MARK: - Text Field -
@@ -262,9 +283,14 @@ class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, UIPicker
                 } else {
                     textField.text = ""
                     dataHelper.selectedObject = nil
-                    if useDefaultFirstItem { //Init With First Default Title
-                        if initWithDefaultFirstItemSelected {
-                            textField.text = defaultFirstItemTitle
+                    //Select default option if it exists
+                    if dataHelper.defaultOption != nil {
+                        selectDefaultOption(dataHelper)
+                    } else { //If there is no default option, set first if needed
+                        if useDefaultFirstItem { //Init With First Default Title
+                            if initWithDefaultFirstItemSelected {
+                                textField.text = defaultFirstItemTitle
+                            }
                         }
                     }
                 }

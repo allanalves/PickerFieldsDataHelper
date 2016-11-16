@@ -12,7 +12,8 @@
 		B100BFD21DC3D08C004E9B05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B100BFD01DC3D08C004E9B05 /* Main.storyboard */; };
 		B100BFD41DC3D08C004E9B05 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B100BFD31DC3D08C004E9B05 /* Assets.xcassets */; };
 		B100BFD71DC3D08C004E9B05 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B100BFD51DC3D08C004E9B05 /* LaunchScreen.storyboard */; };
-		B100BFDF1DC3D099004E9B05 /* PickerFieldsDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B100BFDE1DC3D099004E9B05 /* PickerFieldsDataHelper.swift */; };
+		B1EF721F1DDCB21B00E4294B /* PickerFieldsDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EF721E1DDCB21B00E4294B /* PickerFieldsDataHelper.swift */; };
+		B1EFEF2B1DDCBE3B000C6004 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = B1EFEF2A1DDCBE3B000C6004 /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +24,8 @@
 		B100BFD31DC3D08C004E9B05 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B100BFD61DC3D08C004E9B05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B100BFD81DC3D08C004E9B05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B100BFDE1DC3D099004E9B05 /* PickerFieldsDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerFieldsDataHelper.swift; sourceTree = "<group>"; };
+		B1EF721E1DDCB21B00E4294B /* PickerFieldsDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PickerFieldsDataHelper.swift; path = ../../PickerFieldsDataHelper.swift; sourceTree = "<group>"; };
+		B1EFEF2A1DDCBE3B000C6004 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +42,7 @@
 		B100BFC01DC3D08C004E9B05 = {
 			isa = PBXGroup;
 			children = (
+				B1EFEF2A1DDCBE3B000C6004 /* .gitignore */,
 				B100BFCB1DC3D08C004E9B05 /* PickerDataHelper */,
 				B100BFCA1DC3D08C004E9B05 /* Products */,
 			);
@@ -58,7 +61,7 @@
 			children = (
 				B100BFCC1DC3D08C004E9B05 /* AppDelegate.swift */,
 				B100BFCE1DC3D08C004E9B05 /* ViewController.swift */,
-				B100BFDE1DC3D099004E9B05 /* PickerFieldsDataHelper.swift */,
+				B1EF721E1DDCB21B00E4294B /* PickerFieldsDataHelper.swift */,
 				B100BFD01DC3D08C004E9B05 /* Main.storyboard */,
 				B100BFD31DC3D08C004E9B05 /* Assets.xcassets */,
 				B100BFD51DC3D08C004E9B05 /* LaunchScreen.storyboard */,
@@ -127,6 +130,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B1EFEF2B1DDCBE3B000C6004 /* .gitignore in Resources */,
 				B100BFD71DC3D08C004E9B05 /* LaunchScreen.storyboard in Resources */,
 				B100BFD41DC3D08C004E9B05 /* Assets.xcassets in Resources */,
 				B100BFD21DC3D08C004E9B05 /* Main.storyboard in Resources */,
@@ -141,7 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B100BFCF1DC3D08C004E9B05 /* ViewController.swift in Sources */,
-				B100BFDF1DC3D099004E9B05 /* PickerFieldsDataHelper.swift in Sources */,
+				B1EF721F1DDCB21B00E4294B /* PickerFieldsDataHelper.swift in Sources */,
 				B100BFCD1DC3D08C004E9B05 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
