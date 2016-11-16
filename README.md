@@ -122,6 +122,8 @@ When calling 'clearAllFields()', all fields turn to default state.
 
 ```
 
+## License
 
+All source code is licensed under the [MIT License](https://github.com/allanalves/PickerFieldsDataHelper/blob/master/LICENSE).
 
 
