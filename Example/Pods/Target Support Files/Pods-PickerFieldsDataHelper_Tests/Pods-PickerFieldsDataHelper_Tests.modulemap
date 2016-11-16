@@ -1,0 +1,6 @@
+framework module Pods_PickerFieldsDataHelper_Tests {
+  umbrella header "Pods-PickerFieldsDataHelper_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

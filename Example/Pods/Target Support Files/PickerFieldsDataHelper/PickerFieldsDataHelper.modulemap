@@ -1,0 +1,6 @@
+framework module PickerFieldsDataHelper {
+  umbrella header "PickerFieldsDataHelper-umbrella.h"
+
+  export *
+  module * { export * }
+}

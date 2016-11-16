@@ -1,0 +1,16 @@
+PODS:
+  - PickerFieldsDataHelper (0.1.0)
+
+DEPENDENCIES:
+  - PickerFieldsDataHelper (from `../`)
+
+EXTERNAL SOURCES:
+  PickerFieldsDataHelper:
+    :path: ../
+
+SPEC CHECKSUMS:
+  PickerFieldsDataHelper: 0bb0f93a500ff73b5022d93693ac3eb7f780215c
+
+PODFILE CHECKSUM: 8c78b56d47ddeb1cad142036304c13d5d0b5ae1b
+
+COCOAPODS: 1.1.1

@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'PickerFieldsDataHelper_Example' do
+  pod 'PickerFieldsDataHelper', :path => '../'
+
+  target 'PickerFieldsDataHelper_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
