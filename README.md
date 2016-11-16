@@ -117,7 +117,7 @@ When calling 'clearAllFields()', all fields turn to default state.
 ```swift
         
     func pickerFieldsDataHelper(dataHelper: PickerDataHelper, didSelectObject selectedObject: AnyObject?, withTitle title: String?) {
-        //Use 'title' or 'selectObject'.
+        //Use 'title' or 'selectedObject'.
     }
 
 ```
