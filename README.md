@@ -52,7 +52,9 @@ You can add objects with representing titles to each field at any moment. Picker
     
     func loadProfileVisibilityOptions() {
         pickerFieldsDataHelper.addTitleAndObjectInDataHelper(profileVisibilityTextField, title: "Private", object: "PRI")
-        pickerFieldsDataHelper.addTitleAndObjectInDataHelper(profileVisibilityTextField, title: "Public", object: "PUB")
+
+        //Add an option to be default - starts with the option selected.
+        pickerFieldsDataHelper.addTitleAndObjectInDataHelper(profileVisibilityTextField, title: "Public", object: "PUB", isDefault: true)
     }
 
 ```
