@@ -120,7 +120,7 @@ When calling 'clearAllFields()', all fields turn to default state.
     func pickerFieldsDataHelper(dataHelper: PickerDataHelper, didSelectObject selectedObject: AnyObject?, withTitle title: String?) {
         //Use 'title' or 'selectedObject'.
     }
-
+```
 
 [![CI Status](http://img.shields.io/travis/Allan Alves/PickerFieldsDataHelper.svg?style=flat)](https://travis-ci.org/Allan Alves/PickerFieldsDataHelper)
 [![Version](https://img.shields.io/cocoapods/v/PickerFieldsDataHelper.svg?style=flat)](http://cocoapods.org/pods/PickerFieldsDataHelper)
