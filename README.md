@@ -2,6 +2,12 @@
 
 Swift (3) Protocol to create Picker Views and Date Pickers to work with Text Fields' outlets, providing selectable options to fulfill them.
 
+
+[![CI Status](http://img.shields.io/travis/Allan Alves/PickerFieldsDataHelper.svg?style=flat)](https://travis-ci.org/Allan Alves/PickerFieldsDataHelper)
+[![Version](https://img.shields.io/cocoapods/v/PickerFieldsDataHelper.svg?style=flat)](http://cocoapods.org/pods/PickerFieldsDataHelper)
+[![License](https://img.shields.io/cocoapods/l/PickerFieldsDataHelper.svg?style=flat)](http://cocoapods.org/pods/PickerFieldsDataHelper)
+[![Platform](https://img.shields.io/cocoapods/p/PickerFieldsDataHelper.svg?style=flat)](http://cocoapods.org/pods/PickerFieldsDataHelper)
+
 ![storyboard](https://github.com/allanalves/PickerFieldsDataHelper/blob/master/Images/normal-picker.png?raw=true)
 ![storyboard](https://github.com/allanalves/PickerFieldsDataHelper/blob/master/Images/date-picker.png?raw=true)
 
@@ -122,16 +128,9 @@ When calling 'clearAllFields()', all fields turn to default state.
     }
 ```
 
-[![CI Status](http://img.shields.io/travis/Allan Alves/PickerFieldsDataHelper.svg?style=flat)](https://travis-ci.org/Allan Alves/PickerFieldsDataHelper)
-[![Version](https://img.shields.io/cocoapods/v/PickerFieldsDataHelper.svg?style=flat)](http://cocoapods.org/pods/PickerFieldsDataHelper)
-[![License](https://img.shields.io/cocoapods/l/PickerFieldsDataHelper.svg?style=flat)](http://cocoapods.org/pods/PickerFieldsDataHelper)
-[![Platform](https://img.shields.io/cocoapods/p/PickerFieldsDataHelper.svg?style=flat)](http://cocoapods.org/pods/PickerFieldsDataHelper)
-
-## Example
+## Cocoapods
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-## Requirements
 
 ## Installation
 
