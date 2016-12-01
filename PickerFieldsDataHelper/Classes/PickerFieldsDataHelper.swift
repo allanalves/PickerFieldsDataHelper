@@ -146,10 +146,20 @@ public class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, U
     //Select option on textField and selectedObject property
     fileprivate func selectDefaultOption(_ dataHelper: PickerDataHelper) {
         if let defaultOption = dataHelper.defaultOption {
-            if let textField = dataHelper.textField {
-                textField.text = defaultOption.0
+            let title = defaultOption.0
+            let object = defaultOption.1
+            //Select default title
+            if let pickerView = dataHelper.pickerView {
+                if let index = dataHelper.titles.index(of: title) {
+                    pickerView.selectRow(index, inComponent: 0, animated: false)
+                } else {
+                    pickerView.selectRow(0, inComponent: 0, animated: false)
+                }
             }
-            dataHelper.selectedObject = defaultOption.1
+            if let textField = dataHelper.textField {
+                textField.text = title
+            }
+            dataHelper.selectedObject = object
         }
     }
     
@@ -287,6 +297,10 @@ public class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, U
                     if dataHelper.defaultOption != nil {
                         selectDefaultOption(dataHelper)
                     } else { //If there is no default option, set first if needed
+                        //Select first
+                        if let pickerView = dataHelper.pickerView {
+                            pickerView.selectRow(0, inComponent: 0, animated: false)
+                        }
                         if useDefaultFirstItem { //Init With First Default Title
                             if initWithDefaultFirstItemSelected {
                                 textField.text = defaultFirstItemTitle
