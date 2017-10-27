@@ -21,7 +21,7 @@ import UIKit
     var objects = [Any]()
     var selectedObject: Any?
     var defaultOption: (String,Any)?
-    
+
     init(textField: UITextField, isDateType: Bool) {
         let pickerView = UIPickerView()
         self.pickerView = pickerView
@@ -31,36 +31,36 @@ import UIKit
 }
 
 public class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
-    
+
     weak public var delegate: PickerFieldsDataHelperDelegate?
     var dataHelpers = [PickerDataHelper]()
-    
+
     //Confirmaton button
     public var doneButtonTitle = "OK"
     public var needsConfirmationButton = true //Tap button to confirm
-    
+
     //Show first item with nil object
     public var useDefaultFirstItem = true
     public var initWithDefaultFirstItemSelected = true //if useDefaultFirstItem is true
     public var defaultFirstItemTitle = "Select..." //Use if useDefaultFirstItem is true
-    
+
     //Date Type
     public var dateFormat = "dd/MM/yyyy"
     public var initWithTodayDate = false
-    
-    //MARK: - Initialization -
-    
-    public func addDataHelpers(_ textFields: [UITextField], isDateType: Bool) {
+
+    // MARK: - Initialization -
+
+    public func addDataHelpers(_ textFields: [UITextField], isDateType: Bool = false) {
         for textField in textFields {
             addDataHelper(textField, isDateType: isDateType)
         }
     }
-    
-    public func addDataHelper(_ textField: UITextField, isDateType: Bool) {
+
+    public func addDataHelper(_ textField: UITextField, isDateType: Bool = false) {
         let dataHelper = PickerDataHelper(textField: textField, isDateType: isDateType)
         dataHelper.isDateType = isDateType
         textField.delegate = self
-        
+
         if isDateType {
             let datePicker = UIDatePicker()
             datePicker.datePickerMode = .date
@@ -71,9 +71,9 @@ public class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, U
                                      for: .valueChanged)
             }
             dataHelper.datePicker = datePicker
-            
+
             textField.inputView = datePicker
-            
+
             if initWithTodayDate {
                 datePicker.date = Date()
                 refreshDate(dataHelper)
@@ -82,13 +82,13 @@ public class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, U
             //Picker View
             let pickerView = UIPickerView()
             dataHelper.pickerView = pickerView
-            
+
             //Set Delegate, DataSource & Correspondent TextFields
             pickerView.delegate = self
             pickerView.dataSource = self
             //TextField InputView
             textField.inputView = pickerView
-            
+
             //Add first default item if needed
             if useDefaultFirstItem {
                 dataHelper.titles.append(defaultFirstItemTitle)
@@ -99,11 +99,11 @@ public class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, U
         }
         //Input Accessory View
         addToolBarPickerViews(doneButtonTitle, textField: textField)
-        
+
         dataHelpers.append(dataHelper)
         refreshAllPickers()
     }
-    
+
     public func dataHelper(_ textField: UITextField) -> PickerDataHelper? {
         for item in dataHelpers {
             if textField == item.textField {
@@ -112,9 +112,9 @@ public class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, U
         }
         return nil
     }
-    
-    //MARK: - Content -
-    
+
+    // MARK: - Content -
+
     public func addTitleAndObjectInDataHelper(_ textField: UITextField, title: String, object: Any) {
         if let dataHelper = dataHelper(textField) {
             dataHelper.titles.append(title)
@@ -122,7 +122,7 @@ public class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, U
             refreshAllPickers()
         }
     }
-    
+
     public func addTitleAndObjectInDataHelper(_ textField: UITextField, title: String, object: Any, isDefault: Bool) {
         addTitleAndObjectInDataHelper(textField, title: title, object: object)
         if isDefault {
@@ -132,7 +132,7 @@ public class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, U
             }
         }
     }
-    
+
     //Return selected object for given textfield
     public func selectedObjectForTextField(_ textField: UITextField) -> Any? {
         if let dataHelper = dataHelper(textField) {
@@ -142,29 +142,19 @@ public class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, U
         }
         return nil
     }
-    
+
     //Select option on textField and selectedObject property
     fileprivate func selectDefaultOption(_ dataHelper: PickerDataHelper) {
         if let defaultOption = dataHelper.defaultOption {
-            let title = defaultOption.0
-            let object = defaultOption.1
-            //Select default title
-            if let pickerView = dataHelper.pickerView {
-                if let index = dataHelper.titles.index(of: title) {
-                    pickerView.selectRow(index, inComponent: 0, animated: false)
-                } else {
-                    pickerView.selectRow(0, inComponent: 0, animated: false)
-                }
-            }
             if let textField = dataHelper.textField {
-                textField.text = title
+                textField.text = defaultOption.0
             }
-            dataHelper.selectedObject = object
+            dataHelper.selectedObject = defaultOption.1
         }
     }
-    
-    //MARK: - Text Field -
-    
+
+    // MARK: - Text Field -
+
     public func textFieldDidBeginEditing(_ textField: UITextField) {
         if !needsConfirmationButton {
             if let dataHelper = dataHelper(textField) { //Get DataHelper
@@ -179,9 +169,9 @@ public class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, U
             }
         }
     }
-    
-    //MARK: - Date Picker -
-    
+
+    // MARK: - Date Picker -
+
     @objc fileprivate func didSelectDate(_ datePicker: UIDatePicker) {
         for dataHelper in dataHelpers {
             if let dataHelperDatePicker = dataHelper.datePicker { //Find DH DatePicker
@@ -193,9 +183,9 @@ public class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, U
             }
         }
     }
-    
-    //MARK: - Picker Views -
-    
+
+    // MARK: - Picker Views -
+
     fileprivate func selectObjectOfRow(_ row: Int, dataHelper: PickerDataHelper) {
         if useDefaultFirstItem {
             dataHelper.selectedObject = nil
@@ -209,7 +199,7 @@ public class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, U
             }
         }
     }
-    
+
     func refreshAllPickers() {
         for dataHelper in dataHelpers {
             if let pickerView = dataHelper.pickerView {
@@ -217,7 +207,7 @@ public class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, U
             }
         }
     }
-    
+
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         for dataHelper in dataHelpers {
             if dataHelper.pickerView == pickerView {
@@ -226,7 +216,7 @@ public class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, U
         }
         return "❔"
     }
-    
+
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         //If item is selected without tapping the confirmation button
         if !needsConfirmationButton {
@@ -249,7 +239,7 @@ public class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, U
             }
         }
     }
-    
+
     public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         for dataHelper in dataHelpers {
             if dataHelper.pickerView == pickerView {
@@ -258,13 +248,13 @@ public class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, U
         }
         return 0
     }
-    
+
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
-    //MARK: - Other -
-    
+
+    // MARK: - Other -
+
     func selectDate(_ date: Date, textField: UITextField) {
         if let dataHelper = dataHelper(textField) {
             if dataHelper.isDateType {
@@ -275,7 +265,7 @@ public class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, U
             }
         }
     }
-    
+
     public func clearAllFields() {
         for dataHelper in dataHelpers {
             if let textField = dataHelper.textField {
@@ -297,10 +287,6 @@ public class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, U
                     if dataHelper.defaultOption != nil {
                         selectDefaultOption(dataHelper)
                     } else { //If there is no default option, set first if needed
-                        //Select first
-                        if let pickerView = dataHelper.pickerView {
-                            pickerView.selectRow(0, inComponent: 0, animated: false)
-                        }
                         if useDefaultFirstItem { //Init With First Default Title
                             if initWithDefaultFirstItemSelected {
                                 textField.text = defaultFirstItemTitle
@@ -311,24 +297,24 @@ public class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, U
             }
         }
     }
-    
-    //MARK: - Input Accessory View -
-    
+
+    // MARK: - Input Accessory View -
+
     //Add input accessory view with done button
     func addToolBarPickerViews(_ title : String, textField : UITextField) {
         let toolBar = UIToolbar()
         toolBar.barStyle = UIBarStyle.default
         toolBar.sizeToFit()
-        
+
         let closeButton = UIBarButtonItem(title: title, style: .done, target: self, action: #selector(self.closePicker))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        
+
         toolBar.setItems([spaceButton, closeButton], animated: false)
         toolBar.isUserInteractionEnabled = true
-        
+
         textField.inputAccessoryView = toolBar
     }
-    
+
     //Set selected date as selected object, and textfield title
     func refreshDate(_ dataHelper: PickerDataHelper) {
         if let datePicker = dataHelper.datePicker {
@@ -340,11 +326,11 @@ public class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, U
             }
         }
     }
-    
-    //MARK: - Actions -
-    
+
+    // MARK: - Actions -
+
     //Hide keyboard, set selected object and set title of textfield
-    func closePicker() {
+    @objc func closePicker() {
         //TDOO: Get selected picker item and set text of textfield
         for dataHelper in dataHelpers {
             if let textField = dataHelper.textField {
@@ -374,12 +360,5 @@ public class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, U
             }
         }
     }
-    
+
 }
-
-
-
-
-
-
-

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PickerFieldsDataHelper'
-  s.version          = '0.1.0'
+  s.version          = '0.2.0'
   s.summary          = 'PickerFieldsDataHelper is a protocol in Swift, that helps using selectable options in text field outlets.'
 
 # This description is used to generate tags and improve search results.
@@ -22,7 +22,7 @@ Swift (3) Protocol to create Picker Views and Date Pickers to work with Text Fie
                        DESC
 
   s.homepage         = 'https://github.com/allanalves/PickerFieldsDataHelper'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  s.screenshots     = 'https://raw.githubusercontent.com/allanalves/PickerFieldsDataHelper/master/Images/normal-picker.png', 'https://raw.githubusercontent.com/allanalves/PickerFieldsDataHelper/master/Images/date-picker.png'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Allan Alves' => 'allanalves90@gmail.com' }
   s.source           = { :git => 'https://github.com/allanalves/PickerFieldsDataHelper.git', :tag => s.version.to_s }
