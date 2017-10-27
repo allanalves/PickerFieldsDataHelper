@@ -1,4 +1,4 @@
-# PickerFieldsDataHelper
+# PickerFields Data Helper
 
 Swift (+3.0) Protocol to create Picker Views and Date Pickers to work with Text Fields' outlets, providing selectable options to fulfill them.
 
