@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'PickerFieldsDataHelper'
-  s.version          = '0.2.0'
+  s.version          = '0.2.1'
   s.summary          = 'PickerFieldsDataHelper is a protocol in Swift, that helps using selectable options in text field outlets.'
 
 # This description is used to generate tags and improve search results.

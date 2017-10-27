@@ -71,7 +71,6 @@ public class PickerFieldsDataHelper: NSObject, PickerFieldsDataHelperDelegate, U
                                      for: .valueChanged)
             }
             dataHelper.datePicker = datePicker
-
             textField.inputView = datePicker
 
             if initWithTodayDate {
