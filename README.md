@@ -1,9 +1,8 @@
 # PickerFieldsDataHelper
 
-Swift (3) Protocol to create Picker Views and Date Pickers to work with Text Fields' outlets, providing selectable options to fulfill them.
+Swift (+3.0) Protocol to create Picker Views and Date Pickers to work with Text Fields' outlets, providing selectable options to fulfill them.
 
 
-[![CI Status](http://img.shields.io/travis/Allan Alves/PickerFieldsDataHelper.svg?style=flat)](https://travis-ci.org/Allan Alves/PickerFieldsDataHelper)
 [![Version](https://img.shields.io/cocoapods/v/PickerFieldsDataHelper.svg?style=flat)](http://cocoapods.org/pods/PickerFieldsDataHelper)
 [![License](https://img.shields.io/cocoapods/l/PickerFieldsDataHelper.svg?style=flat)](http://cocoapods.org/pods/PickerFieldsDataHelper)
 [![Platform](https://img.shields.io/cocoapods/p/PickerFieldsDataHelper.svg?style=flat)](http://cocoapods.org/pods/PickerFieldsDataHelper)
@@ -21,11 +20,11 @@ Just add the file 'PickerFieldsDataHelper.swift' to your project.
 
 class ViewController: UITableViewController, PickerFieldsDataHelperDelegate {
 
-    let pickerFieldsDataHelper = PickerFieldsDataHelper()
+    let pickerFields = PickerFieldsDataHelper()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        pickerFieldsDataHelper.delegate = self
+        pickerFields.delegate = self
     }
 
 }
@@ -39,10 +38,10 @@ class ViewController: UITableViewController, PickerFieldsDataHelperDelegate {
 		//... (viewDidLoad method)
 
         //Setting up simple pickers with options for each text field
-        pickerFieldsDataHelper.addDataHelpers([accountTypeTextField, profileVisibilityTextField], isDateType: false)
+        pickerFields.addDataHelpers([accountTypeTextField, profileVisibilityTextField])
         
         //Setting up date Type field
-        pickerFieldsDataHelper.addDataHelper(birthDateTextField, isDateType: true)
+        pickerFields.addDataHelper(birthDateTextField, isDateType: true)
 
 ```
 
@@ -53,15 +52,15 @@ You can add objects with representing titles to each field at any moment. Picker
 ```swift
 
     func loadAccountTypeOptions() {
-        pickerFieldsDataHelper.addTitleAndObjectInDataHelper(accountTypeTextField, title: "Normal User", object: 0)
-        pickerFieldsDataHelper.addTitleAndObjectInDataHelper(accountTypeTextField, title: "Admin", object: 1)
+        pickerFields.addTitleAndObjectInDataHelper(accountTypeTextField, title: "Normal User", object: 0)
+        pickerFields.addTitleAndObjectInDataHelper(accountTypeTextField, title: "Admin", object: 1)
     }
     
     func loadProfileVisibilityOptions() {
-        pickerFieldsDataHelper.addTitleAndObjectInDataHelper(profileVisibilityTextField, title: "Private", object: "PRI")
+        pickerFields.addTitleAndObjectInDataHelper(profileVisibilityTextField, title: "Private", object: "PRI")
 
         //Add an option to be default - starts with the option selected.
-        pickerFieldsDataHelper.addTitleAndObjectInDataHelper(profileVisibilityTextField, title: "Public", object: "PUB", isDefault: true)
+        pickerFields.addTitleAndObjectInDataHelper(profileVisibilityTextField, title: "Public", object: "PUB", isDefault: true)
     }
 
 ```
@@ -74,7 +73,7 @@ It can be nil if there is an non-value option selected like "Select an option".
 
 ```swift
 
-    if let object = pickerFieldsDataHelper.selectedObjectForTextField(accountTypeTextField) {
+    if let object = pickerFields.selectedObjectForTextField(accountTypeTextField) {
     	//Use object
 	} else {
 		//No valid option selected
@@ -87,22 +86,22 @@ It can be nil if there is an non-value option selected like "Select an option".
 #### Select Confirmation Button
 
 ```swift
-        pickerFieldsDataHelper.doneButtonTitle = "Choose"
-        pickerFieldsDataHelper.needsConfirmationButton = false //Selects without tapping the button
+        pickerFields.doneButtonTitle = "Choose"
+        pickerFields.needsConfirmationButton = false //Selects without tapping the button
 ```
 
 #### Non-value Default Option
 
 ```swift
-        pickerFieldsDataHelper.useDefaultFirstItem = true
-        pickerFieldsDataHelper.defaultFirstItemTitle = "Select an option"
-        pickerFieldsDataHelper.initWithDefaultFirstItemSelected = false //Start fields with "Select an option" text
+        pickerFields.useDefaultFirstItem = true
+        pickerFields.defaultFirstItemTitle = "Select an option"
+        pickerFields.initWithDefaultFirstItemSelected = false //Start fields with "Select an option" text
 ```
 
 #### Date Type: Start with today's date
 
 ```swift
-		pickerFieldsDataHelper.initWithTodayDate = true
+		pickerFields.initWithTodayDate = true
 ```
 
 ### Clearing Fields
@@ -112,7 +111,7 @@ When calling 'clearAllFields()', all fields turn to default state.
 ```swift
         
     @IBAction func clearAllFields(sender: AnyObject) {
-        pickerFieldsDataHelper.clearAllFields()
+        pickerFields.clearAllFields()
     }
 
 ```
@@ -138,7 +137,7 @@ PickerFieldsDataHelper is available through [CocoaPods](http://cocoapods.org). T
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "PickerFieldsDataHelper"
+pod 'PickerFieldsDataHelper'
 ```
 
 ## Author
