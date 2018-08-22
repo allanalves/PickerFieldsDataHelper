@@ -10,7 +10,7 @@ Swift (+3.0) Protocol to create Picker Views and Date Pickers to work with Text 
 ![storyboard](https://github.com/allanalves/PickerFieldsDataHelper/blob/master/Images/normal-picker.png?raw=true)
 ![storyboard](https://github.com/allanalves/PickerFieldsDataHelper/blob/master/Images/date-picker.png?raw=true)
 
-### Try it!
+# Try it!
 ```ruby
 pod try PickerFieldsDataHelper
 ```
